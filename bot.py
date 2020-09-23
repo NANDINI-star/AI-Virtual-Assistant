@@ -5,10 +5,36 @@ import wikipedia
 import webbrowser
 import os
 import smtplib
+from selenium import webdriver
+import time
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[1].id)
+
+class GUicloudbot:
+
+    def __init__(self,username,password):
+        self.username = username
+        self.password = password
+        self.base_url = "https://gu.icloudems.com/corecampus/student/attendance"
+
+    def login(self):
+        self.driver = webdriver.Chrome('./chromedriver.exe')
+        self.driver.get("https://gu.icloudems.com/corecampus/index.php")
+        self.driver.find_element_by_name('userid').send_keys(self.username)
+        self.driver.find_element_by_name('pass_word').send_keys(self.password)
+        
+        self.driver.find_element_by_xpath("//button[contains(text(), 'LOGIN')]").click()
+
+    def attendance(self):
+        self.driver.find_element_by_xpath("//a[contains(@href, '/myattendance.php')]").click()
+        
+        self.driver.find_element_by_xpath('//*[@id="select2-users-rc-results"]').click()
+                                            
+        self.driver.find_element_by_xpath('//*[@id="select2-users-rc-result-zvgd-9"]').click()
+        # self.driver.find_element_by_xpath("//b[contains(text(), 'September 2020-2021')]").click()
+
 
 def wishMe():
     hour = int(datetime.datetime.now().hour)
@@ -19,7 +45,7 @@ def wishMe():
     else:
         speak("Good evening")
 
-    speak("I am Jarvis Mam, Please tell me how may I help you")
+    speak("How can I help you")
 
 def speak(audio):
     engine.say(audio)
@@ -42,7 +68,7 @@ def takeCommand():
         print(e)
         print("Say that again please...")
         return "None"
-    return query
+    return query    
 
 def sendEmail(to, content):
     server = smtplib.SMTP('smtp.gmail.com',587)
@@ -52,10 +78,13 @@ def sendEmail(to, content):
     server.sendmail('youremailid',to, content)
     server.close()
 
+    
+
 if __name__ == "__main__":
+    bot = GUicloudbot('18SCSE1180008','GU@12345')
     wishMe()
-    # while True:
-    if 1:
+    while True:
+    # if 1:
         query = takeCommand().lower()
         #logic for executing taska based on query
         if 'wikipedia' in query:
@@ -72,9 +101,21 @@ if __name__ == "__main__":
             webbrowser.open("google.com")
         
         elif 'open icloud' in query:
-            webbrowser.open("https://gu.icloudems.com/corecampus/index.php")
-            speak("Login to your icloud account to proceed")
-            
+            speak("opening University icloud")
+            bot.login()
+            speak("What would you like to know")
+            command = takeCommand()
+            if 'open attendance' in command:
+                try:
+                    speak("opening attendance")
+                    bot.attendance()
+
+                    # speak("would you like to see today's attendance")
+                    
+
+                except Exception as e:
+                    print(e)
+                    speak("Sorry I'm unable to open attendance")
 
         elif 'the time' in query:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
@@ -86,7 +127,7 @@ if __name__ == "__main__":
 
         elif 'email to me' in query:
             try:
-                speak("What shoul I say")
+                speak("What should I say")
                 content  = takeCommand()
                 to = "youremailid"
                 sendEmail(to,content)
