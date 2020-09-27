@@ -11,8 +11,8 @@ or
 `pip3 install pyttsx3`
 - pyaudio
 
-``pip3 install pipwin
-pipwin install pyaudio``
+`pip3 install pipwin `
+`pipwin install pyaudio`
 
 - speech_recognition
 
