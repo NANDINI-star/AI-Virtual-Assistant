@@ -12,6 +12,7 @@ or
 - pyaudio
 
 `pip3 install pipwin `
+
 `pipwin install pyaudio`
 
 - speech_recognition
