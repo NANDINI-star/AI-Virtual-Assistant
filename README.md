@@ -37,6 +37,18 @@ or
 
 `pip3 install pyjokes`
 
+
 ## Commands
-- 
+- Open Icloud
+- Open website
+- Search anything in wikipedia
+- Send mail
+- Tell me a joke
+- Open Word/Powerpoint/Excel
+- Write a note
+- Show notes
+- Tell me the news
+- Make a reminder
+- Take a screenshot
+
 
