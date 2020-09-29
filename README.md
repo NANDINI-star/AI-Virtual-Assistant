@@ -39,7 +39,8 @@ or
 
 
 ## Commands
-- Open Icloud
+- Open Icloud 
+(Icloud:- Galgotias website for marks, assignments, quizzes, attendance, timetable, college info, and NEFT form)  
 - Open website
 - Search anything in wikipedia
 - Send mail
