@@ -8,8 +8,8 @@ import time
 import webbrowser as wb
 import psutil
 import pyjokes
-import os
 import pyautogui
+import os
 import wolframalpha
 import json
 import requests
@@ -40,18 +40,20 @@ class GUicloudbot:
         # self.driver.find_element_by_xpath("//b[contains(text(), 'September 2020-2021')]").click()
 
 
-def wishMe():
-    hour = int(datetime.datetime.now().hour)
-    if hour >= 0 and hour< 12:
-        speak("Good morning!")
-    elif hour >= 12 and hour <18:
-        speak("Good afternoon")
-    else:
-        speak("Good evening")
+# def wishMe():
+#     hour = int(datetime.datetime.now().hour)
+#     if hour >= 0 and hour< 12:
+#         speak("Good morning!")
+#     elif hour >= 12 and hour <18:
+#         speak("Good afternoon")
+#     else:
+#         speak("Good evening")
 
-    speak("How can I help you")
+#     speak("How can I help you")
+
 engine=pyttsx3.init()
-
+voices = engine.getProperty('voices')
+engine.setProperty('voice', voices[1].id)
 
 def speak(audio):
     engine.say(audio)
@@ -59,7 +61,7 @@ def speak(audio):
 
 def time_():
     Time=datetime.datetime.now().strftime("%H:%M:%S")
-    speak("the currnt time is")
+    speak("the current time is")
     speak(Time)
 def date_():
     year=datetime.datetime.now().year
@@ -71,24 +73,24 @@ def date_():
     speak(year)
 
 
-def wishme():
-    speak("hello sir. welcome back !")
+def wishMe():
+    
     time_()
     date_()
 
     hour=datetime.datetime.now().hour
     if hour>=6 and hour<12:
-        speak("good morning sir!")
+        speak("good morning mam!")
     elif hour >=12 and hour<18:
-        speak(" good afteroon sir!")
+        speak(" good afteroon mam!")
     elif hour >=18 and hour<20:
-        speak("good evening sir!")
+        speak("good evening mam!")
     elif hour>=20 and hour<24:
-        speak("sir its time to go to sleep. you may go to sleep")
+        speak("mam its time to go to sleep. you may go to sleep")
     else:
-        speak("sir its very late you should sleep.")
+        speak("mam its very late you should sleep.")
 
-    speak(". what we will be doing now sir!")
+    speak("How can I help you?")
 
 def takeCommand():
     r=sr.Recognizer()
@@ -98,22 +100,22 @@ def takeCommand():
         audio=r.listen(source)
     try:
         print("Recognizing...")
-        query=r.recognize_google(audio,language='en-US')
-        print(query)
+        query=r.recognize_google(audio,language='en-in')
+        print(f"User said:{query}\n")
     except Exception as e:
         print(e)
-        print("Sir i cant get it, please say it again")
-        return
+        print("mam i cant get it, please say it again")
+        return "None"
     return query
 
 def sendEmail(to,content):
     server=smtplib.SMTP('smtp.gmail.com',587)
     server.ehlo()
     server.starttls()
-
     server.login('username@gmail.com','password')
     server.sendmail('sender_mail',to,content)
     server.close()
+
 def cpu():
     usage=str(psutil.cpu_percent())
     speak('CPU is at'+usage)
@@ -135,8 +137,8 @@ if __name__ == "__main__":
     wishMe()
     while True:
     # if 1:
-        query = takeCommand().lower()
-        #logic for executing taska based on query
+        query = takeCommand()
+        #logic for executing tasks based on query
         if 'wikipedia' in query:
             speak('Searching wikipedia...')
             query = query.replace("wikipedia", "")
