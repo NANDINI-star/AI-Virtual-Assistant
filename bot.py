@@ -7,18 +7,6 @@ import os
 import smtplib
 from selenium import webdriver
 import time
-<<<<<<< HEAD
-import webbrowser as wb
-import psutil
-import pyjokes
-import pyautogui
-import os
-import wolframalpha
-import json
-import requests
-from urllib.request import urlopen
-=======
->>>>>>> parent of 90944df... Merge branch 'master' of https://github.com/NANDINI-star/AI-Virtual-Assistant
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -48,65 +36,21 @@ class GUicloudbot:
         # self.driver.find_element_by_xpath("//b[contains(text(), 'September 2020-2021')]").click()
 
 
-# def wishMe():
-#     hour = int(datetime.datetime.now().hour)
-#     if hour >= 0 and hour< 12:
-#         speak("Good morning!")
-#     elif hour >= 12 and hour <18:
-#         speak("Good afternoon")
-#     else:
-#         speak("Good evening")
+def wishMe():
+    hour = int(datetime.datetime.now().hour)
+    if hour >= 0 and hour< 12:
+        speak("Good morning!")
+    elif hour >= 12 and hour <18:
+        speak("Good afternoon")
+    else:
+        speak("Good evening")
 
-<<<<<<< HEAD
-#     speak("How can I help you")
-
-engine=pyttsx3.init()
-voices = engine.getProperty('voices')
-engine.setProperty('voice', voices[1].id)
-=======
     speak("How can I help you")
->>>>>>> parent of 90944df... Merge branch 'master' of https://github.com/NANDINI-star/AI-Virtual-Assistant
 
 def speak(audio):
     engine.say(audio)
     engine.runAndWait()
 
-<<<<<<< HEAD
-def time_():
-    Time=datetime.datetime.now().strftime("%H:%M:%S")
-    speak("the current time is")
-    speak(Time)
-def date_():
-    year=datetime.datetime.now().year
-    month=datetime.datetime.now().month
-    date=datetime.datetime.now().day
-    speak('the current date is')
-    speak(date)
-    speak(month)
-    speak(year)
-
-
-def wishMe():
-    
-    time_()
-    date_()
-
-    hour=datetime.datetime.now().hour
-    if hour>=6 and hour<12:
-        speak("good morning mam!")
-    elif hour >=12 and hour<18:
-        speak(" good afteroon mam!")
-    elif hour >=18 and hour<20:
-        speak("good evening mam!")
-    elif hour>=20 and hour<24:
-        speak("mam its time to go to sleep. you may go to sleep")
-    else:
-        speak("mam its very late you should sleep.")
-
-    speak("How can I help you?")
-
-=======
->>>>>>> parent of 90944df... Merge branch 'master' of https://github.com/NANDINI-star/AI-Virtual-Assistant
 def takeCommand():
     #It takes microscope input from the user and returns string output
     r = sr.Recognizer()
@@ -117,15 +61,6 @@ def takeCommand():
 
     try:
         print("Recognizing...")
-<<<<<<< HEAD
-        query=r.recognize_google(audio,language='en-in')
-        print(f"User said:{query}\n")
-    except Exception as e:
-        print(e)
-        print("mam i cant get it, please say it again")
-        return "None"
-    return query
-=======
         query = r.recognize_google(audio, language= 'en-in')
         print(f"User said:{query}\n")
 
@@ -134,35 +69,14 @@ def takeCommand():
         print("Say that again please...")
         return "None"
     return query    
->>>>>>> parent of 90944df... Merge branch 'master' of https://github.com/NANDINI-star/AI-Virtual-Assistant
 
 def sendEmail(to, content):
     server = smtplib.SMTP('smtp.gmail.com',587)
     server.ehlo()
     server.starttls()
-<<<<<<< HEAD
-    server.login('username@gmail.com','password')
-    server.sendmail('sender_mail',to,content)
-    server.close()
-
-def cpu():
-    usage=str(psutil.cpu_percent())
-    speak('CPU is at'+usage)
-    battery=psutil.sensors_battery()
-    speak('battery is')
-    speak(battery.percent +'charged')
-
-def joke():
-    speak(py.jokes.get_joke())
-
-def screenshot():
-    img=pyautogui.screenshot()
-    img.save('C:/Users/Public/Pictures/screenshotAI.png')
-=======
     server.login('youremailid', 'password')
     server.sendmail('youremailid',to, content)
     server.close()
->>>>>>> parent of 90944df... Merge branch 'master' of https://github.com/NANDINI-star/AI-Virtual-Assistant
 
     
 
