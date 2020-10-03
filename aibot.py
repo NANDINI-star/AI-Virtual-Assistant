@@ -6,6 +6,13 @@ import webbrowser
 import os
 import smtplib
 from selenium import webdriver
+import psutil
+import pyjokes
+import pyautogui
+from urllib.request import urlopen
+import json
+import requests
+import wolframalpha
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -44,7 +51,7 @@ def wishMe():
     else:
         speak("Good evening")
 
-    speak("I am Jarvis Mam, Please tell me how may I help you")
+    speak("Elsa is online now. How may I help you")
 
 def speak(audio):
     engine.say(audio)
@@ -76,6 +83,23 @@ def sendEmail(to, content):
     server.login('youremailid', 'password')
     server.sendmail('youremailid',to, content)
     server.close()
+
+def cpu():
+    usage=str(psutil.cpu_percent())
+    speak('CPU is at'+usage)
+    print('CPU is at'+usage)
+    battery=psutil.sensors_battery()
+    speak('battery is')
+    speak(battery.percent )
+    print('battery is')
+    print(battery.percent)
+
+def joke():
+    speak(pyjokes.get_joke())
+
+# def screenshot():
+#     img=pyautogui.screenshot()
+#     img.save('C:/Users/Public/Pictures/screenshotAI.png')
 
 if __name__ == "__main__":
     bot = GUicloudbot('18SCSE1180008','GU@12345')
@@ -163,6 +187,50 @@ if __name__ == "__main__":
         #     except Exception as e:
         #         print(e)
 
+        elif 'cpu'in query:
+            cpu()
+
+        elif 'joke' in query:
+            joke()
+
+        # elif 'Screenshot' in query:
+        #     speak("Taking a screenshot now")
+        #     screenshot()
+
+        elif 'where is ' in query:
+            query=query.replace('where is','')
+            location=query
+            speak("on map "+location+'is here')
+            webbrowser.open_new_tab("https://www.google.com/maps/place/"+location)
+
+        elif 'news' in query:
+            try:
+                jsonObj=urlopen("http://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=32c7d7ec660744669c2719430e560f8f")
+                data=json.load(jsonObj)
+                i=1
+                speak('here are some top hadline from the business industry')
+                print('***************TOP HEADLINE***************'+'\n')
+                for item in data['articles']:
+                    print(str(i)+'.'+item['title']+'\n')
+                    print(item['description']+'\n')
+                    speak(item['title'])
+                    i+=1
+
+            except Exception as e:
+                    print(str(e))
+
+        elif 'what is' in query or 'who is' in query:
+            client=wolframalpha.Client('8EW922-36E8QQYRJT')
+            res = client.query(query)
+
+            try:
+                print(next(res.result).text)
+                speak(next(res.result).text)
+            except:
+                print("not found")
+
         elif 'go offline' in query:
             speak("ok mam shutting down the system")
             quit()
+
+        
