@@ -5,17 +5,13 @@ import wikipedia
 import webbrowser
 import os
 import smtplib
-<<<<<<< HEAD
 from selenium import webdriver
 import time
-=======
->>>>>>> parent of cc7516f... Update bot.py
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[1].id)
 
-<<<<<<< HEAD
 class GUicloudbot:
 
     def __init__(self,username,password):
@@ -40,8 +36,6 @@ class GUicloudbot:
         # self.driver.find_element_by_xpath("//b[contains(text(), 'September 2020-2021')]").click()
 
 
-=======
->>>>>>> parent of cc7516f... Update bot.py
 def wishMe():
     hour = int(datetime.datetime.now().hour)
     if hour >= 0 and hour< 12:
@@ -51,11 +45,7 @@ def wishMe():
     else:
         speak("Good evening")
 
-<<<<<<< HEAD
     speak("How can I help you")
-=======
-    speak("I am Jarvis Mam, Please tell me how may I help you")
->>>>>>> parent of cc7516f... Update bot.py
 
 def speak(audio):
     engine.say(audio)
@@ -78,11 +68,7 @@ def takeCommand():
         print(e)
         print("Say that again please...")
         return "None"
-<<<<<<< HEAD
     return query    
-=======
-    return query
->>>>>>> parent of cc7516f... Update bot.py
 
 def sendEmail(to, content):
     server = smtplib.SMTP('smtp.gmail.com',587)
@@ -91,7 +77,6 @@ def sendEmail(to, content):
     server.login('youremailid', 'password')
     server.sendmail('youremailid',to, content)
     server.close()
-<<<<<<< HEAD
 
     
 
@@ -102,15 +87,6 @@ if __name__ == "__main__":
     # if 1:
         query = takeCommand()
         #logic for executing tasks based on query
-=======
-
-if __name__ == "__main__":
-    wishMe()
-    # while True:
-    if 1:
-        query = takeCommand().lower()
-        #logic for executing taska based on query
->>>>>>> parent of cc7516f... Update bot.py
         if 'wikipedia' in query:
             speak('Searching wikipedia...')
             query = query.replace("wikipedia", "")
@@ -125,7 +101,6 @@ if __name__ == "__main__":
             webbrowser.open("google.com")
         
         elif 'open icloud' in query:
-<<<<<<< HEAD
             speak("opening University icloud")
             bot.login()
             speak("What would you like to know")
@@ -141,11 +116,6 @@ if __name__ == "__main__":
                 except Exception as e:
                     print(e)
                     speak("Sorry I'm unable to open attendance")
-=======
-            webbrowser.open("https://gu.icloudems.com/corecampus/index.php")
-            speak("Login to your icloud account to proceed")
-            
->>>>>>> parent of cc7516f... Update bot.py
 
         elif 'the time' in query:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
@@ -157,11 +127,7 @@ if __name__ == "__main__":
 
         elif 'email to me' in query:
             try:
-<<<<<<< HEAD
                 speak("What should I say")
-=======
-                speak("What shoul I say")
->>>>>>> parent of cc7516f... Update bot.py
                 content  = takeCommand()
                 to = "youremailid"
                 sendEmail(to,content)
