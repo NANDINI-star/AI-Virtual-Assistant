@@ -6,7 +6,6 @@ import webbrowser
 import os
 import smtplib
 from selenium import webdriver
-import time
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -30,9 +29,9 @@ class GUicloudbot:
     def attendance(self):
         self.driver.find_element_by_xpath("//a[contains(@href, '/myattendance.php')]").click()
         
-        self.driver.find_element_by_xpath('//*[@id="select2-users-rc-results"]').click()
+        # self.driver.find_element_by_xpath('//*[@id="select2-users-rc-results"]').click()
                                             
-        self.driver.find_element_by_xpath('//*[@id="select2-users-rc-result-zvgd-9"]').click()
+        # self.driver.find_element_by_xpath('//*[@id="select2-users-rc-result-zvgd-9"]').click()
         # self.driver.find_element_by_xpath("//b[contains(text(), 'September 2020-2021')]").click()
 
 
@@ -45,7 +44,7 @@ def wishMe():
     else:
         speak("Good evening")
 
-    speak("How can I help you")
+    speak("I am Jarvis Mam, Please tell me how may I help you")
 
 def speak(audio):
     engine.say(audio)
@@ -68,7 +67,7 @@ def takeCommand():
         print(e)
         print("Say that again please...")
         return "None"
-    return query    
+    return query
 
 def sendEmail(to, content):
     server = smtplib.SMTP('smtp.gmail.com',587)
@@ -78,15 +77,13 @@ def sendEmail(to, content):
     server.sendmail('youremailid',to, content)
     server.close()
 
-    
-
 if __name__ == "__main__":
     bot = GUicloudbot('18SCSE1180008','GU@12345')
     wishMe()
     while True:
     # if 1:
-        query = takeCommand()
-        #logic for executing tasks based on query
+        query = takeCommand().lower()
+        #logic for executing taska based on query
         if 'wikipedia' in query:
             speak('Searching wikipedia...')
             query = query.replace("wikipedia", "")
@@ -117,9 +114,20 @@ if __name__ == "__main__":
                     print(e)
                     speak("Sorry I'm unable to open attendance")
 
+            
+
         elif 'the time' in query:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
             speak(f"Mam, the time is {strTime}")
+
+        elif 'the date' in query:
+            year = int(datetime.datetime.now().year)
+            month = int(datetime.datetime.now().month)
+            date = int(datetime.datetime.now().day)
+            speak("the current Date is")
+            speak(date)
+            speak(month)
+            speak(year)
 
         elif 'open code' in query:
             codePath ="C:\\Users\\varun\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
@@ -127,7 +135,7 @@ if __name__ == "__main__":
 
         elif 'email to me' in query:
             try:
-                speak("What should I say")
+                speak("What shoul I say")
                 content  = takeCommand()
                 to = "youremailid"
                 sendEmail(to,content)
@@ -136,3 +144,25 @@ if __name__ == "__main__":
             except Exception as e:
                 print(e)
                 speak("Sorry my friend nandini. I am not able to send this email")
+
+        # elif 'search in chrome' in query:
+        #     speak("what should i search?")
+        #     chrome_path = 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s' #Add the Location of the chrome browser
+
+        #     r = sr.Recognizer()
+
+        #     with sr.Microphone() as source:
+        #         print('say something!')
+        #         print('Listening...')
+        #         audio = r.listen(source)
+        #         print("done")
+        #     try:
+        #         text = r.recognize_google(audio)
+        #         print('google think you said:\n' +text)
+        #         webbrowser.get(chrome_path).open(text)
+        #     except Exception as e:
+        #         print(e)
+
+        elif 'go offline' in query:
+            speak("ok mam shutting down the system")
+            quit()
