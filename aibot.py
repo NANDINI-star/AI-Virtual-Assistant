@@ -41,6 +41,8 @@ class GUicloudbot:
         # self.driver.find_element_by_xpath('//*[@id="select2-users-rc-result-zvgd-9"]').click()
         # self.driver.find_element_by_xpath("//b[contains(text(), 'September 2020-2021')]").click()
 
+    def timetable(self):
+        self.driver.find_element_by_xpath("/html/body/div[1]/div/div/div[4]/div/div/div[15]/a").click()
 
 def wishMe():
     hour = int(datetime.datetime.now().hour)
@@ -96,6 +98,7 @@ def cpu():
 
 def joke():
     speak(pyjokes.get_joke())
+    
 
 # def screenshot():
 #     img=pyautogui.screenshot()
@@ -138,7 +141,21 @@ if __name__ == "__main__":
                     print(e)
                     speak("Sorry I'm unable to open attendance")
 
-            
+            elif 'time table' in command:
+                try:
+                    speak("opening timetable")
+                    bot.timetable()
+
+                    
+
+                except Exception as e:
+                    print(e)
+                    speak("Sorry I'm unable to open timetable")
+
+            else:
+                speak('I dont understand you')
+
+        
 
         elif 'the time' in query:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
@@ -201,7 +218,11 @@ if __name__ == "__main__":
             query=query.replace('where is','')
             location=query
             speak("on map "+location+'is here')
-            webbrowser.open_new_tab("https://www.google.com/maps/place/"+location)
+            driver = webdriver.Chrome('./chromedriver.exe')
+            driver.get("https://www.google.com/maps/place/"+location)
+            driver.find_element_by_xpath("//button[@id='searchbox-searchbutton']").click()
+
+            # webbrowser.open_new_tab("https://www.google.com/maps/place/"+location)
 
         elif 'news' in query:
             try:
@@ -219,15 +240,15 @@ if __name__ == "__main__":
             except Exception as e:
                     print(str(e))
 
-        elif 'what is' in query or 'who is' in query:
-            client=wolframalpha.Client('8EW922-36E8QQYRJT')
-            res = client.query(query)
+        # elif 'what is' in query or 'who is' in query:
+        #     client=wolframalpha.Client('8EW922-36E8QQYRJT')
+        #     res = client.query(query)
 
-            try:
-                print(next(res.result).text)
-                speak(next(res.result).text)
-            except:
-                print("not found")
+        #     try:
+        #         print(next(res.result).text)
+        #         speak(next(res.result).text)
+        #     except:
+        #         print("not found")
 
         elif 'go offline' in query:
             speak("ok mam shutting down the system")
