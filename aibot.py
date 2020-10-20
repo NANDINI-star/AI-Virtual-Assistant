@@ -250,6 +250,8 @@ if __name__ == "__main__":
         #     except:
         #         print("not found")
 
+        elif 'Galgotias University courses' in query:
+            speak("There are total 20 courses")
         elif 'go offline' in query:
             speak("ok mam shutting down the system")
             quit()
