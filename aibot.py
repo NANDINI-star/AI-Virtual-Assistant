@@ -270,9 +270,12 @@ if __name__ == "__main__":
 
 
         elif 'clubs and societies' in query:
-           speak("At Galgotias University, students are encouraged to become a member of different clubs and committees. With over 40 different clubs, Galgotias University connects students to a platform where they can exchange knowledge, build awareness, and receive recognition. the Vision is to Promote fellowship, share India’s rich cultural diversity and promote brotherhood and the Mission is to Inform, inspire and connect students on a platform where they can exchange knowledge, build awareness, generate interest and receive recognition.The society list includes mainly Cultural Society, Sports Society, Technical Society, Management Society, Literary Society and Story Society. which society do you want to know about") 
+           speak("""At Galgotias University, students are encouraged to become a member of different clubs and committees. With over 40 different clubs, Galgotias University connects students to a platform where they can exchange knowledge, 
+           build awareness, and receive recognition. the Vision is to Promote fellowship, share India’s rich cultural diversity and promote brotherhood and the Mission is to Inform, inspire and connect students on a platform where they 
+           can exchange knowledge, build awareness, generate interest and receive recognition. The society list includes mainly Cultural Society, Sports Society, Technical Society, Management Society, Literary Society and Story Society. 
+           which society do you want to know about""") 
            society = takeCommand()
-           if 'Cultural society' in society:
+           if 'cultural society' in society:
                speak("The clubs in cultural society are Galgotias Studio D - The Dance Club Galgotias Note Veda - The Music club Galgotias The Actor's Hub-Dramatics Club Galgotias Scintillations - The Fashion Club Galgotias Spic Macay Club Galgotias The Fine arts club Galgotias CamCircle - The Photography Club")
            elif 'sports society' in society:
                speak("the club in sports society are Galgotias Sports Society")    
