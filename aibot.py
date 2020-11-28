@@ -87,14 +87,14 @@ def sendEmail(to, content):
     server.close()
 
 def cpu():
-    usage=str(psutil.cpu_percent())
-    speak('CPU is at'+usage)
-    print('CPU is at'+usage)
-    battery=psutil.sensors_battery()
-    speak('battery is')
-    speak(battery.percent )
-    print('battery is')
-    print(battery.percent)
+   usage=str(psutil.cpu_percent())
+   speak('CPU is at'+usage)
+   print('CPU is at'+usage)
+   battery=psutil.sensors_battery()
+   speak('battery is')
+   speak(battery.percent )
+   print('battery is')
+   print(battery.percent)
 
 def joke():
     speak(pyjokes.get_joke())
@@ -176,7 +176,7 @@ if __name__ == "__main__":
 
         elif 'email to me' in query:
             try:
-                speak("What shoul I say")
+                speak("What should I say")
                 content  = takeCommand()
                 to = "youremailid"
                 sendEmail(to,content)
@@ -184,7 +184,7 @@ if __name__ == "__main__":
 
             except Exception as e:
                 print(e)
-                speak("Sorry my friend nandini. I am not able to send this email")
+                speak("Sorry my friend palak. I am not able to send this email")
 
         # elif 'search in chrome' in query:
         #     speak("what should i search?")
@@ -205,7 +205,7 @@ if __name__ == "__main__":
         #         print(e)
 
         elif 'cpu'in query:
-            cpu()
+           cpu()
 
         elif 'joke' in query:
             joke()
@@ -250,10 +250,48 @@ if __name__ == "__main__":
         #     except:
         #         print("not found")
 
-        elif 'Galgotias University courses' in query:
-            speak("There are total 20 courses")
+        elif 'university programs' in query:
+           speak("There are total 6 types of programs offered by galgotias university. The programs offered by GU are under graduate programs, post graduate programs, diploma programs, certificate programs, integrated programs, doctoral programs , which program do you want to know about?")
+           program=takeCommand()
+           if 'under graduate programs' in program:
+               speak("In this program we have all the bachelors degree courses available in different schools. we have school of Electrical Electronics and communication engineering, school of Computing Science & Engineering, School of Civil Engineering, School of Mechanical Engineering, School of Biosciences and Biomedical Engineering, School of Architecture & Design, School of Business, School of Finance & Commerce, School of Liberal Education, School of Basic & Applied Sciences,School of Medical & Allied Sciences, School of Nursing,School of Hospitality & Tourism, School of Media & Communication Studies, School of Education, School of Agriculture, School of Law  ")
+           elif 'Post Graduate Programs' in program:
+               speak("In this program we have all the masters degree courses available in different schools. we have school of Computing Science & Engineering, School of Electrical, Electronics & Communication Engineering, School of Civil Engineering, School of Mechanical Engineering, School of Biosciences and Biomedical Engineering, School of Architecture & Design, School of Business,School of Finance & Commerce,School of Liberal Education, School of Basic & Applied Sciences, School of Law, School of Medical & Allied Sciences, School of Hospitality & Tourism, School of Media & Communication Studies, School of Education, School of Agriculture")    
+           elif 'diploma programs' in program:
+               speak("we have multiple diploma courses available in feilds of University Polytechnic,School of Business, School of Hospitality & Tourism, School of Medical and Allied Sciences and in School of Ayurveda Science.")    
+           elif 'certificate programs' in program:
+               speak("certificate program includes certificte degree in courses available under School of Hospitality & Tourism only")
+           elif 'integrated programs' in program:
+               speak("So, School of Computing Science & Engineering offers integrated BCA + MCA, School of Law offers Five year Integrated B.A LL.B.(Hons.) and Five year Integrated B.B.A LL.B.(Hons.) , School of Business offers Integrated MBA (BBA+MBA)")
+           elif 'Doctoral Programs' in program:
+               speak("doctoral courses are available by School of Electrical, Electronics & Communication Engineering, School of Computing Science & Engineering, School of Civil Engineering, School of Mechanical Engineering, School of Business, School of Biosciences and Biomedical Engineering, School of Liberal Education, School of Basic & Applied Sciences, School of Law, School of Medical & Allied Sciences, School of Media & Communication Studies, School of Education ")    
+           else:
+               print("not found")
+
+
+        elif 'clubs and societies' in query:
+           speak("At Galgotias University, students are encouraged to become a member of different clubs and committees. With over 40 different clubs, Galgotias University connects students to a platform where they can exchange knowledge, build awareness, and receive recognition. the Vision is to Promote fellowship, share India’s rich cultural diversity and promote brotherhood and the Mission is to Inform, inspire and connect students on a platform where they can exchange knowledge, build awareness, generate interest and receive recognition.The society list includes mainly Cultural Society, Sports Society, Technical Society, Management Society, Literary Society and Story Society. which society do you want to know about") 
+           society = takeCommand()
+           if 'Cultural society' in society:
+               speak("The clubs in cultural society are Galgotias Studio D - The Dance Club Galgotias Note Veda - The Music club Galgotias The Actor's Hub-Dramatics Club Galgotias Scintillations - The Fashion Club Galgotias Spic Macay Club Galgotias The Fine arts club Galgotias CamCircle - The Photography Club")
+           elif 'sports society' in society:
+               speak("the club in sports society are Galgotias Sports Society")    
+           elif 'technical society' in society:
+               speak("the clubs in technical society are Galgotias Gaming Club - F.R.A.G. Galgotias The Creative club Galgotias Quizita Mavens - Quiz Club Galgotias Mechelites: Motorsports Club")    
+           elif 'management society' in society:
+               speak("the club in management society are Galgotias GU Management Club ")    
+           elif 'literary society' in society:
+               speak("the clubs are Lingo Freaks - The Literary club Galgotias Youth Parliament-NIRMAAN")   
+           elif 'story society' in society:
+               speak("the clubs are Galgotias Humans Of Galgotias - Every Story Matters galgotias APES Club Galgotias Grace Club")  
+           else:
+               print("couldn't get that input, try again")           
+        
+        
+        elif 'student council' in query:
+            speak("galgotias univerity student council comparises of the core members from senior year who take responsibilities of every happening in and out side of the campus.")    
+
+
         elif 'go offline' in query:
             speak("ok mam shutting down the system")
             quit()
-
-        
