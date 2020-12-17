@@ -1,5 +1,5 @@
 # AI-Virtual-Assistant
-AI-Virtual-Asssistant for Galgotias University, which tells you about the information regarding Galgotias University
+AI-Virtual-Asssistant for Galgotias University, which tells you about the information regarding Galgotias University. In our project we have automated the web applications whi ch are used by the students of Galgotias University on a daily basis. GUIcloud and LMS are automated in our Virtual Assistant, you can access these applications and the features of these applications by using voice commands(mentioned below). 
 
 ## Installation
 Code is developed in Python3 and tested on Visual Studio Code.
